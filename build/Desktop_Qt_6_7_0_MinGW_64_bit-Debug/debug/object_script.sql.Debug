@@ -1,0 +1,12 @@
+debug/dashboard.o
+debug/goboard.o
+debug/main.o
+debug/mainwindow.o
+debug/mylabel.o
+debug/sqlcommond.o
+debug/toregister.o
+debug/moc_dashboard.o
+debug/moc_goboard.o
+debug/moc_mainwindow.o
+debug/moc_mylabel.o
+debug/moc_toregister.o
