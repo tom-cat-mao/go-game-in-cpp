@@ -3,7 +3,7 @@
 #include <stack>
 #include <utility>
 
-myLabel::myLabel(QWidget* perant): QLabel(perant),judge(-1)
+myLabel::myLabel(QWidget* perant): QLabel(perant),judge(1)
 {
     // 设置 MyLabel 控件自动调整大小
     setScaledContents(true);
@@ -46,21 +46,37 @@ void myLabel::mousePressEvent(QMouseEvent *event)
 
         if(board[s_row][s_col] == 0)
         {
-            if(judge == -1)
+            if(judge == 1)
             {
                 board[s_row][s_col] = blackstone;
-                judge = 1;
+
+                isCaptured(s_row, s_col);
+                if(!isSafe(s_row, s_col))
+                {
+                    board[s_row][s_col] = 0;
+                    qDebug() << "you can't place there";
+                    return;
+                }
+
+                judge = -1;
             }
             else
             {
                 board[s_row][s_col] = whitestone;
-                judge = -1;
+
+                isCaptured(s_row, s_col);
+                if(!isSafe(s_row, s_col))
+                {
+                    board[s_row][s_col] = 0;
+                    qDebug() << "you can't place there";
+                    return;
+                }
+
+                judge = 1;
             }
             clicked = true;
 
             insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 1, username, db);
-
-            isCaptured(s_row, s_col);
         }
 
         update();
@@ -256,6 +272,48 @@ int myLabel::countLiberty(int x, int y, std::vector<std::vector<bool>>& visited)
     return liberties;
 }
 
+int myLabel::countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visited)
+{
+    std::vector<std::pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    std::stack<std::pair<int, int>> s;
+    s.push({x, y});
+    int liberties = 0;
+    int stoneColor = board[x][y];
+    std::vector<std::pair<int, int>> connected;
+
+    while (!s.empty())
+    {
+        auto [cx, cy] = s.top();
+        s.pop();
+        if (!isValid(cx, cy) || visited[cx][cy])
+        {
+            continue;
+        }
+        visited[cx][cy] = true;
+        connected.push_back({cx, cy});
+
+        for (auto [dx, dy] : directions)
+        {
+            int nx = cx + dx;
+            int ny = cy + dy;
+            if (isValid(nx, ny))
+            {
+                if (board[nx][ny] == 0)
+                {
+                    liberties++;
+                }
+                else if (board[nx][ny] == stoneColor && !visited[nx][ny])
+                {
+                    s.push({nx, ny});
+                }
+            }
+        }
+    }
+
+    return liberties;
+}
+
 void myLabel::isCaptured(int x, int y)
 {
     std::vector<std::pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -272,4 +330,14 @@ void myLabel::isCaptured(int x, int y)
     }
 }
 
+bool myLabel::isSafe(int x, int y)
+{
+    std::vector<std::vector<bool>> visited(19, std::vector<bool>(19, false));
 
+    if(!countLiberty_s(x, y, visited))
+    {
+        return false;
+    }
+
+    return true;
+}
