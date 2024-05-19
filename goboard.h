@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include "mylabel.h"
 
 namespace Ui {
 class goBoard;
@@ -15,6 +16,7 @@ class goBoard : public QWidget
 public:
     int c_id;
     QString username;
+    Ui::goBoard *ui;
 
     goBoard(QWidget *parent = nullptr);
     ~goBoard();
@@ -37,7 +39,7 @@ private slots:
     void on_pass_clicked();
 
 private:
-    Ui::goBoard *ui;
+
 
 };
 

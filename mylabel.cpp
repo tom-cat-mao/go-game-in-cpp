@@ -7,13 +7,6 @@ myLabel::myLabel(QWidget* perant): QLabel(perant),judge(1)
 {
     // 设置 MyLabel 控件自动调整大小
     setScaledContents(true);
-    for(int i = 0; i  <19; i++)
-    {
-        for(int j = 0; j < 19; j++)
-        {
-            board[i][j] = 0;
-        }
-    }
 
 }
 
@@ -340,4 +333,17 @@ bool myLabel::isSafe(int x, int y)
     }
 
     return true;
+}
+
+void myLabel::initialization()
+{
+    for(int i = 0; i  <19; i++)
+    {
+        for(int j = 0; j < 19; j++)
+        {
+            board[i][j] = 0;
+        }
+    }
+
+    update();
 }

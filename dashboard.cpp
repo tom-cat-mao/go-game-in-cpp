@@ -1,5 +1,6 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
+#include "ui_goboard.h"
 
 dashboard::dashboard(QWidget *parent)
     : QWidget(parent)
@@ -11,6 +12,7 @@ dashboard::dashboard(QWidget *parent)
 
     connect(this->b,SIGNAL(back()),this,SLOT(comeBackToPrev()));
     connect(this, &dashboard::sendCID, b, &goBoard::setUserID);
+    connect(this, &dashboard::initializeBoard, b->ui->label, &myLabel::initialization);
 
 }
 
@@ -48,8 +50,10 @@ void dashboard::on_start_clicked()
     c_id = query.lastInsertId().toInt();
 
     emit sendCID(c_id, username);
+    emit initializeBoard();
 
     this->close();
+
     b->showFullScreen();
 }
 

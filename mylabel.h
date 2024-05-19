@@ -36,6 +36,7 @@ protected:
 public slots:
     void setUserID(int id, QString name);
     void setPass();
+    void initialization();
 
 
 private:

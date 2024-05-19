@@ -29,6 +29,7 @@ public slots:
 
 signals:
     void sendCID(int id, QString name);  // Signal to send the user ID
+    void initializeBoard();
 
 private slots:
     void on_show_clicked();
