@@ -352,8 +352,11 @@ void myLabel::initialization()
 
 void myLabel::setRegret()
 {
-    board[s_row][s_col] = 0;
-    judge = -judge;
-    insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 0, username, db);
+    if(board[s_row][s_col] != 0)
+    {
+        board[s_row][s_col] = 0;
+        judge = -judge;
+        insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 0, username, db);
+    }
     update();
 }
