@@ -30,6 +30,7 @@ public:
     QPushButton *start;
     QTableView *tableView;
     QPushButton *show;
+    QPushButton *notice;
 
     void setupUi(QWidget *dashboard)
     {
@@ -54,7 +55,7 @@ public:
 
         start = new QPushButton(dashboard);
         start->setObjectName("start");
-        start->setGeometry(QRect(560, 240, 300, 50));
+        start->setGeometry(QRect(560, 140, 300, 50));
         QFont font1;
         font1.setPointSize(18);
         font1.setBold(true);
@@ -71,8 +72,12 @@ public:
         tableView->setMidLineWidth(2);
         show = new QPushButton(dashboard);
         show->setObjectName("show");
-        show->setGeometry(QRect(560, 150, 300, 50));
+        show->setGeometry(QRect(560, 220, 300, 50));
         show->setFont(font1);
+        notice = new QPushButton(dashboard);
+        notice->setObjectName("notice");
+        notice->setGeometry(QRect(560, 300, 300, 50));
+        notice->setFont(font1);
 
         retranslateUi(dashboard);
 
@@ -85,6 +90,7 @@ public:
         label_3->setText(QCoreApplication::translate("dashboard", "GO GAME", nullptr));
         start->setText(QCoreApplication::translate("dashboard", "GET START THE GAME", nullptr));
         show->setText(QCoreApplication::translate("dashboard", "SHOW RECORD", nullptr));
+        notice->setText(QCoreApplication::translate("dashboard", "NOTICE", nullptr));
     } // retranslateUi
 
 };

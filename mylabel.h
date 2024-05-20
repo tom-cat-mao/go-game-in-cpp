@@ -27,7 +27,7 @@ protected:
     void drawStones(int row, int col);
     bool edgecheck(int x, int y);
     int countLiberty(int x, int y, std::vector<std::vector<bool>>& visited);
-    int countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visited);
+    bool countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visited);
     bool isValid(int x, int y);
     void isCaptured(int x, int y);
     bool isSafe(int x, int y);
@@ -37,6 +37,7 @@ public slots:
     void setUserID(int id, QString name);
     void setPass();
     void initialization();
+    void setRegret();
 
 
 private:

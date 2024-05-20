@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mylabel.cpp \
+    rule.cpp \
     sqlcommond.cpp \
     toregister.cpp
 
@@ -23,6 +24,7 @@ HEADERS += \
     goboard.h \
     mainwindow.h \
     mylabel.h \
+    rule.h \
     sqlcommond.h \
     toregister.h
 
@@ -30,6 +32,7 @@ FORMS += \
     dashboard.ui \
     goboard.ui \
     mainwindow.ui \
+    rule.ui \
     toregister.ui
 
 # Default rules for deployment.

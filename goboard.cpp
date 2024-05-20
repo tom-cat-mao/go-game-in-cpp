@@ -9,6 +9,7 @@ goBoard::goBoard(QWidget *parent)
 
     connect(this, &goBoard::sendCID, ui->label, &myLabel::setUserID);
     connect(this, &goBoard::pass, ui->label, &myLabel::setPass);
+    connect(this, &goBoard::regret, ui->label, &myLabel::setRegret);
 
 }
 
@@ -53,5 +54,11 @@ void goBoard::on_start_clicked()
 void goBoard::on_pass_clicked()
 {
     emit pass();
+}
+
+
+void goBoard::on_regret_clicked()
+{
+    emit regret();
 }
 

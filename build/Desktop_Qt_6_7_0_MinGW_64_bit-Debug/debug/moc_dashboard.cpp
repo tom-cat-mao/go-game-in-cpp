@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../dashboard.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -40,10 +41,12 @@ constexpr auto qt_meta_stringdata_CLASSdashboardENDCLASS = QtMocHelpers::stringD
     "",
     "id",
     "name",
+    "initializeBoard",
     "on_start_clicked",
     "comeBackToPrev",
     "setUserID",
-    "on_show_clicked"
+    "on_show_clicked",
+    "on_notice_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -56,29 +59,33 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSdashboardENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   44,    2, 0x06,    1 /* Public */,
+       1,    2,   56,    2, 0x06,    1 /* Public */,
+       5,    0,   61,    2, 0x06,    4 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   49,    2, 0x0a,    4 /* Public */,
-       6,    0,   50,    2, 0x0a,    5 /* Public */,
-       7,    2,   51,    2, 0x0a,    6 /* Public */,
-       8,    0,   56,    2, 0x08,    9 /* Private */,
+       6,    0,   62,    2, 0x0a,    5 /* Public */,
+       7,    0,   63,    2, 0x0a,    6 /* Public */,
+       8,    2,   64,    2, 0x0a,    7 /* Public */,
+       9,    0,   69,    2, 0x08,   10 /* Private */,
+      10,    0,   70,    2, 0x08,   11 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -97,6 +104,8 @@ Q_CONSTINIT const QMetaObject dashboard::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'initializeBoard'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_start_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'comeBackToPrev'
@@ -106,6 +115,8 @@ Q_CONSTINIT const QMetaObject dashboard::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_show_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_notice_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -118,10 +129,12 @@ void dashboard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         (void)_t;
         switch (_id) {
         case 0: _t->sendCID((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 1: _t->on_start_clicked(); break;
-        case 2: _t->comeBackToPrev(); break;
-        case 3: _t->setUserID((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 4: _t->on_show_clicked(); break;
+        case 1: _t->initializeBoard(); break;
+        case 2: _t->on_start_clicked(); break;
+        case 3: _t->comeBackToPrev(); break;
+        case 4: _t->setUserID((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 5: _t->on_show_clicked(); break;
+        case 6: _t->on_notice_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -130,6 +143,13 @@ void dashboard::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
             using _t = void (dashboard::*)(int , QString );
             if (_t _q_method = &dashboard::sendCID; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (dashboard::*)();
+            if (_t _q_method = &dashboard::initializeBoard; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
                 return;
             }
         }
@@ -155,13 +175,13 @@ int dashboard::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }
@@ -171,5 +191,11 @@ void dashboard::sendCID(int _t1, QString _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void dashboard::initializeBoard()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP

@@ -41,7 +41,9 @@ constexpr auto qt_meta_stringdata_CLASSmyLabelENDCLASS = QtMocHelpers::stringDat
     "",
     "id",
     "name",
-    "setPass"
+    "setPass",
+    "initialization",
+    "setRegret"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -54,7 +56,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmyLabelENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,11 +64,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmyLabelENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   26,    2, 0x0a,    1 /* Public */,
-       5,    0,   31,    2, 0x0a,    4 /* Public */,
+       1,    2,   38,    2, 0x0a,    1 /* Public */,
+       5,    0,   43,    2, 0x0a,    4 /* Public */,
+       6,    0,   44,    2, 0x0a,    5 /* Public */,
+       7,    0,   45,    2, 0x0a,    6 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -86,6 +92,10 @@ Q_CONSTINIT const QMetaObject myLabel::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'setPass'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'initialization'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setRegret'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -99,6 +109,8 @@ void myLabel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         switch (_id) {
         case 0: _t->setUserID((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->setPass(); break;
+        case 2: _t->initialization(); break;
+        case 3: _t->setRegret(); break;
         default: ;
         }
     }
@@ -123,13 +135,13 @@ int myLabel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }

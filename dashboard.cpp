@@ -9,6 +9,7 @@ dashboard::dashboard(QWidget *parent)
     ui->setupUi(this);
 
     this->b = new goBoard;
+    this->r = new rule;
 
     connect(this->b,SIGNAL(back()),this,SLOT(comeBackToPrev()));
     connect(this, &dashboard::sendCID, b, &goBoard::setUserID);
@@ -116,5 +117,12 @@ void dashboard::on_show_clicked()
 
     ui->tableView->resizeColumnsToContents();
     ui->tableView->resizeRowsToContents();
+}
+
+
+void dashboard::on_notice_clicked()
+{
+    //this->close();
+    r->show();
 }
 

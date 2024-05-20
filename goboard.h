@@ -25,6 +25,7 @@ public:
 signals:
     void back();
     void pass();
+    void regret();
     void sendCID(int id, QString name);  // Signal to send the user ID
 
 
@@ -37,6 +38,8 @@ private slots:
     void on_start_clicked();
 
     void on_pass_clicked();
+
+    void on_regret_clicked();
 
 private:
 

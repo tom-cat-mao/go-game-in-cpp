@@ -265,13 +265,13 @@ int myLabel::countLiberty(int x, int y, std::vector<std::vector<bool>>& visited)
     return liberties;
 }
 
-int myLabel::countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visited)
+bool myLabel::countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visited)
 {
     std::vector<std::pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
     std::stack<std::pair<int, int>> s;
     s.push({x, y});
-    int liberties = 0;
+
     int stoneColor = board[x][y];
     std::vector<std::pair<int, int>> connected;
 
@@ -294,7 +294,7 @@ int myLabel::countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visite
             {
                 if (board[nx][ny] == 0)
                 {
-                    liberties++;
+                    return true;
                 }
                 else if (board[nx][ny] == stoneColor && !visited[nx][ny])
                 {
@@ -304,7 +304,7 @@ int myLabel::countLiberty_s(int x, int y, std::vector<std::vector<bool>>& visite
         }
     }
 
-    return liberties;
+    return false;
 }
 
 void myLabel::isCaptured(int x, int y)
@@ -345,5 +345,15 @@ void myLabel::initialization()
         }
     }
 
+    judge = 1;
+
+    update();
+}
+
+void myLabel::setRegret()
+{
+    board[s_row][s_col] = 0;
+    judge = -judge;
+    insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 0, username, db);
     update();
 }
