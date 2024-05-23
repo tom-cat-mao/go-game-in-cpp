@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QMouseEvent>
 #include <QPainter>
-
+#include <QMessageBox>
 #include <QtSql>
 
 #include "sqlcommond.h"
@@ -31,6 +31,7 @@ protected:
     bool isValid(int x, int y);
     void isCaptured(int x, int y);
     bool isSafe(int x, int y);
+    void countTerritory(int &black_t, int &white_t);
     void writeIntoSQL(int x, int y, int color, int alive);
 
 public slots:
@@ -38,6 +39,7 @@ public slots:
     void setPass();
     void initialization();
     void setRegret();
+    void setFinish();
 
 
 private:

@@ -26,6 +26,7 @@ signals:
     void back();
     void pass();
     void regret();
+    void finish();
     void sendCID(int id, QString name);  // Signal to send the user ID
 
 

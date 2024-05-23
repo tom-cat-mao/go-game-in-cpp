@@ -141,7 +141,7 @@ void myLabel::paintEvent(QPaintEvent *event)
         for (int j = 0; j < 19; ++j)
         {
             if (board[i][j] != 0)
-            { // 绘制黑子
+            {
                 drawStones(i, j);
             }
         }
@@ -359,4 +359,85 @@ void myLabel::setRegret()
         insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 0, username, db);
     }
     update();
+}
+
+void myLabel::setFinish()
+{
+    int black_t = 0;
+    int white_t = 0;
+    countTerritory(black_t, white_t);
+
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setWindowTitle("WINNER");
+
+    if(black_t - white_t >= 7)
+    {
+        msgBox.setText(QString("Winner: Black!\nBlack territory: %1").arg(black_t));
+        updateWinner(c_id, "black", username, db);
+    }
+    else
+    {
+        msgBox.setText(QString("Winner: White!\nWhite territory: %1").arg(white_t));
+        updateWinner(c_id, "white", username, db);
+    }
+
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+
+    db.close();
+
+
+}
+
+void myLabel::countTerritory(int &black_t, int &white_t)
+{
+    std::stack<std::pair<int, int>> s;
+
+    for(int i = 0; i < 19; i++)
+    {
+        int count = 0;
+        for(int j = 0; j <19; j++)
+        {
+            count++;
+            if(board[i][j] != 0)
+            {
+                if(s.empty())
+                {
+                    if(board[i][j] == blackstone)
+                    {
+                        black_t = black_t + count;
+                        count = 0;
+                    }
+                    else if(board[i][j] == whitestone)
+                    {
+                        white_t = white_t + count;
+                        count = 0;
+                    }
+                }
+                else
+                {
+                    auto [cx, cy] = s.top();
+                    if(board[i][j] == board[cx][cy])
+                    {
+                        if(board[i][j] == blackstone)
+                        {
+                            black_t = black_t + count;
+                            count = 0;
+                        }
+                        else if(board[i][j] == whitestone)
+                        {
+                            white_t = white_t + count;
+                            count = 0;
+                        }
+                    }
+                }
+
+                s.push({i, j});
+
+            }
+
+        }
+    }
+
 }

@@ -107,3 +107,23 @@ bool insertIntoTable(int x, int y, int stoneColor, int c_id, int isLife, QString
     return true;
 
 }
+
+bool updateWinner(int c_id, QString winner, QString username, QSqlDatabase &db)
+{
+    QSqlQuery query(db);
+
+    QString tableName = username + "_c";
+
+    query.prepare("UPDATE " + tableName + " SET winner = :winner WHERE id = :id");
+    query.bindValue(":winner", winner);
+    query.bindValue(":id", c_id);
+
+    // 执行查询并返回结果
+    if (!query.exec())
+    {
+        qDebug() << "Update failed:" << query.lastError();
+        return false;
+    }
+
+    return true;
+}

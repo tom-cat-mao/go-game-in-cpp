@@ -10,6 +10,7 @@ goBoard::goBoard(QWidget *parent)
     connect(this, &goBoard::sendCID, ui->label, &myLabel::setUserID);
     connect(this, &goBoard::pass, ui->label, &myLabel::setPass);
     connect(this, &goBoard::regret, ui->label, &myLabel::setRegret);
+    connect(this, &goBoard::finish, ui->label, &myLabel::setFinish);
 
 }
 
@@ -34,6 +35,7 @@ void goBoard::keyPressEvent(QKeyEvent *event)
 void goBoard::on_finish_clicked()
 {
     this->close();
+    emit this->finish();
     emit this->back();
 }
 
