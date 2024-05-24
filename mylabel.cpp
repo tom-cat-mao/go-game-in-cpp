@@ -256,9 +256,9 @@ int myLabel::countLiberty(int x, int y, std::vector<std::vector<bool>>& visited)
     {
         for (auto [cx, cy] : connected)
         {
-            board[cx][cy] = 0;
+            insertIntoTable(cx, cy, board[cx][cy], c_id, 0, username, db);
 
-            insertIntoTable(s_row, s_col, board[s_row][s_col], c_id, 0, username, db);
+            board[cx][cy] = 0;
         }
     }
 
@@ -440,4 +440,86 @@ void myLabel::countTerritory(int &black_t, int &white_t)
         }
     }
 
+}
+
+void myLabel::loadReplayData(const QString &tableName, int c_id)
+{
+
+
+    if (!connectToSQL(db))
+    {
+        return;
+    }
+
+    replayData.clear();
+    QSqlQuery query(db);
+
+    qDebug() << c_id;
+
+    query.prepare("SELECT x, y, color, alive FROM " + tableName + " WHERE c_id = :c_id ORDER BY id ASC");
+    query.bindValue(":c_id", c_id);
+
+    if (query.exec())
+    {
+        while (query.next())
+        {
+            QVector<int> move(4);
+            move[0] = query.value(0).toInt(); // x
+            move[1] = query.value(1).toInt(); // y
+            move[2] = query.value(2).toInt(); // color
+            move[3] = query.value(3).toInt(); // alive
+            replayData.append(move);
+        }
+    }
+    else
+    {
+        qDebug() << "Failed to load replay data: " << query.lastError();
+    }
+
+    currentStep = 0;
+    updateBoardToStep(currentStep);
+}
+
+void myLabel::updateBoardToStep(int step)
+{
+    initialization(); // 重置棋盘
+
+    for (int i = 0; i <= step && i < replayData.size(); ++i)
+    {
+        int x = replayData[i][0];
+        int y = replayData[i][1];
+        int color = replayData[i][2];
+        if (replayData[i][3] == 0)
+        {
+            color = 0;
+        }
+        board[x][y] = color;
+    }
+
+    update(); // 更新显示
+}
+
+void myLabel::forward()
+{
+    if (currentStep < replayData.size() - 1)
+    {
+        ++currentStep;
+        updateBoardToStep(currentStep);
+    }
+}
+
+void myLabel::backward()
+{
+    if (currentStep > 0)
+    {
+        --currentStep;
+        updateBoardToStep(currentStep);
+    }
+}
+
+void myLabel::setReplayData(const QVector<QVector<int>> &data)
+{
+    replayData = data;
+    currentStep = 0;
+    updateBoardToStep(currentStep);
 }

@@ -9,6 +9,7 @@
 #include "../../../mylabel.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -44,7 +45,12 @@ constexpr auto qt_meta_stringdata_CLASSmyLabelENDCLASS = QtMocHelpers::stringDat
     "setPass",
     "initialization",
     "setRegret",
-    "setFinish"
+    "setFinish",
+    "forward",
+    "backward",
+    "setReplayData",
+    "QList<QList<int>>",
+    "data"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -57,7 +63,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmyLabelENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,11 +71,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmyLabelENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   44,    2, 0x0a,    1 /* Public */,
-       5,    0,   49,    2, 0x0a,    4 /* Public */,
-       6,    0,   50,    2, 0x0a,    5 /* Public */,
-       7,    0,   51,    2, 0x0a,    6 /* Public */,
-       8,    0,   52,    2, 0x0a,    7 /* Public */,
+       1,    2,   62,    2, 0x0a,    1 /* Public */,
+       5,    0,   67,    2, 0x0a,    4 /* Public */,
+       6,    0,   68,    2, 0x0a,    5 /* Public */,
+       7,    0,   69,    2, 0x0a,    6 /* Public */,
+       8,    0,   70,    2, 0x0a,    7 /* Public */,
+       9,    0,   71,    2, 0x0a,    8 /* Public */,
+      10,    0,   72,    2, 0x0a,    9 /* Public */,
+      11,    1,   73,    2, 0x0a,   10 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
@@ -77,6 +86,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmyLabelENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 12,   13,
 
        0        // eod
 };
@@ -101,7 +113,14 @@ Q_CONSTINIT const QMetaObject myLabel::staticMetaObject = { {
         // method 'setRegret'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'setFinish'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'forward'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'backward'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setReplayData'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QVector<QVector<int>> &, std::false_type>
     >,
     nullptr
 } };
@@ -117,7 +136,21 @@ void myLabel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 2: _t->initialization(); break;
         case 3: _t->setRegret(); break;
         case 4: _t->setFinish(); break;
+        case 5: _t->forward(); break;
+        case 6: _t->backward(); break;
+        case 7: _t->setReplayData((*reinterpret_cast< std::add_pointer_t<QList<QList<int>>>>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 7:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<QList<int>> >(); break;
+            }
+            break;
         }
     }
 }
@@ -141,13 +174,13 @@ int myLabel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        if (_id < 8)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 8;
     }
     return _id;
 }

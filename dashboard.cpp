@@ -1,6 +1,7 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "ui_goboard.h"
+#include "ui_replay.h"
 
 dashboard::dashboard(QWidget *parent)
     : QWidget(parent)
@@ -10,10 +11,13 @@ dashboard::dashboard(QWidget *parent)
 
     this->b = new goBoard;
     this->r = new rule;
+    this->re = new replay;
 
     connect(this->b,SIGNAL(back()),this,SLOT(comeBackToPrev()));
     connect(this, &dashboard::sendCID, b, &goBoard::setUserID);
     connect(this, &dashboard::initializeBoard, b->ui->label, &myLabel::initialization);
+    connect(ui->tableView, &QTableView::doubleClicked, this, &dashboard::on_tableView_doubleClicked);
+    connect(this->re, SIGNAL(finish()), this, SLOT(finishReplay()));  // 连接复盘完成信号到槽函数
 
 }
 
@@ -126,3 +130,29 @@ void dashboard::on_notice_clicked()
     r->show();
 }
 
+
+void dashboard::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    c_id = index.sibling(index.row(), 0).data().toInt(); // 获取点击行的对局ID
+
+    qDebug() << c_id;
+
+    startReplay(c_id, username);
+}
+
+void dashboard::startReplay(int c_id, QString username)
+{
+    this->re->setCID(c_id, username); // 设置复盘的对局ID和用户名
+    this->close();
+    this->re->ui->label->initialization();
+    this->re->showFullScreen();
+}
+
+void dashboard::finishReplay()
+{
+    this->re->close();
+    this->show();
+}

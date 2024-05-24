@@ -3,6 +3,7 @@ release/goboard.o
 release/main.o
 release/mainwindow.o
 release/mylabel.o
+release/replay.o
 release/rule.o
 release/sqlcommond.o
 release/toregister.o
@@ -10,5 +11,6 @@ release/moc_dashboard.o
 release/moc_goboard.o
 release/moc_mainwindow.o
 release/moc_mylabel.o
+release/moc_replay.o
 release/moc_rule.o
 release/moc_toregister.o

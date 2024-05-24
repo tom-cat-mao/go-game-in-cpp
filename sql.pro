@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     mylabel.cpp \
+    replay.cpp \
     rule.cpp \
     sqlcommond.cpp \
     toregister.cpp
@@ -24,6 +25,7 @@ HEADERS += \
     goboard.h \
     mainwindow.h \
     mylabel.h \
+    replay.h \
     rule.h \
     sqlcommond.h \
     toregister.h
@@ -32,6 +34,7 @@ FORMS += \
     dashboard.ui \
     goboard.ui \
     mainwindow.ui \
+    replay.ui \
     rule.ui \
     toregister.ui
 

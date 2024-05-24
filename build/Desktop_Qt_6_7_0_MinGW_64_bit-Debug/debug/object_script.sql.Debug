@@ -3,6 +3,7 @@ debug/goboard.o
 debug/main.o
 debug/mainwindow.o
 debug/mylabel.o
+debug/replay.o
 debug/rule.o
 debug/sqlcommond.o
 debug/toregister.o
@@ -10,5 +11,6 @@ debug/moc_dashboard.o
 debug/moc_goboard.o
 debug/moc_mainwindow.o
 debug/moc_mylabel.o
+debug/moc_replay.o
 debug/moc_rule.o
 debug/moc_toregister.o
