@@ -28,7 +28,6 @@ dashboard::~dashboard()
 
 void dashboard::on_start_clicked()
 {
-
     if(!connectToSQL(db))
     {
         return;
@@ -155,4 +154,15 @@ void dashboard::finishReplay()
 {
     this->re->close();
     this->show();
+}
+
+void dashboard::paintEvent(QPaintEvent *)
+{
+    QPainter painter_dash(this);
+    QPixmap pix_dash;
+    int nImageWidth_dash=width();
+
+    pix_dash.load("C:/Users/steph/Desktop/dashboard.jpg");
+
+    painter_dash.drawPixmap(0,0,nImageWidth_dash,height(),pix_dash);
 }

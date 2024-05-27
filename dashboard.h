@@ -8,6 +8,7 @@
 
 #include <QWidget>
 #include <QtSql>
+#include <QPainter>
 
 class goBoard;
 
@@ -49,6 +50,8 @@ private:
     QString username;
     int c_id;
     QSqlDatabase db;
+
+    void paintEvent(QPaintEvent *);
 };
 
 #endif // DASHBOARD_H

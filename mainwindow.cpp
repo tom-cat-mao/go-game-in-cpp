@@ -4,8 +4,18 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , music(new QSoundEffect(this))
+    , isPlaying(false)
 {
     ui->setupUi(this);
+    // 设置音乐文件路径
+    music->setSource(QUrl::fromLocalFile("C:/Users/steph/Desktop/姜必群 - 围棋少年.wav"));
+    music->setLoopCount(QSoundEffect::Infinite);  // 设置无限循环
+    music->setVolume(0.5f);  // 设置音量，在0到1之间
+
+    // 播放背景音乐
+    playMusic();
+
 
 
     this->d = new dashboard;
@@ -24,6 +34,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_login_clicked()
 {
+    pauseMusic();
+
     if(!connectToSQL(db))
     {
         return;
@@ -107,15 +119,43 @@ void MainWindow::on_login_clicked()
 
 }
 
-
 void MainWindow::on_register_2_clicked()
 {
+
     this->close();
     r->show();
 }
 
 void MainWindow::comeBackToPrev()
 {
+
     this->r->close();
     this->show();
 }
+
+void MainWindow::paintEvent(QPaintEvent *)
+{
+    QPainter painter(this);
+    QPixmap pix;
+    int nImageWidth=width();
+
+    pix.load("C:/Users/steph/Desktop/mainwindow.jpg");
+
+    painter.drawPixmap(0,0,nImageWidth,height(),pix);
+}
+
+void MainWindow::playMusic()
+{
+    music->play();
+    isPlaying = true;
+}
+
+void MainWindow::pauseMusic()
+{
+    if (isPlaying) {
+        music->stop();
+        isPlaying = false;
+    }
+}
+
+
