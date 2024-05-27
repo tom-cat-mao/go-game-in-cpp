@@ -7,6 +7,7 @@ myLabel::myLabel(QWidget* perant): QLabel(perant),judge(1)
 {
     // 设置 MyLabel 控件自动调整大小
     setScaledContents(true);
+    player = new QSoundEffect(this);
 
 }
 
@@ -15,6 +16,7 @@ myLabel::~myLabel()
 
 void myLabel::mousePressEvent(QMouseEvent *event)
 {
+    playSound();
     if(!connectToSQL(db))
     {
         return;
@@ -522,4 +524,11 @@ void myLabel::setReplayData(const QVector<QVector<int>> &data)
     replayData = data;
     currentStep = 0;
     updateBoardToStep(currentStep);
+}
+
+void myLabel::playSound()
+{
+    player->setSource(QUrl::fromLocalFile("C:/Users/steph/Desktop/围棋落子.wav"));
+    player->setVolume(50);
+    player->play();
 }

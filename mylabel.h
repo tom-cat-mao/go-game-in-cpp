@@ -9,6 +9,11 @@
 #include <QPainter>
 #include <QMessageBox>
 #include <QtSql>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QSoundEffect>
+#include <QFile>
+#include <QDebug>
 
 #include "sqlcommond.h"
 
@@ -44,6 +49,7 @@ public slots:
     void forward();
     void backward();
     void setReplayData(const QVector<QVector<int>> &data);
+    void playSound();
 
 private:
     int gridSize = 45; // 棋盘格子大小
@@ -62,6 +68,8 @@ private:
     QSqlDatabase db;
     QVector<QVector<int>> replayData; // 用于存储棋盘复盘数据
     int currentStep; // 当前步数
+
+    QSoundEffect *player;
 
 };
 
