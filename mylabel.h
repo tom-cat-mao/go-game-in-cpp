@@ -50,6 +50,7 @@ public slots:
     void backward();
     void setReplayData(const QVector<QVector<int>> &data);
     void playSound();
+    void playCaptureSound();
 
 private:
     int gridSize = 45; // 棋盘格子大小

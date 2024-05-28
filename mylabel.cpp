@@ -256,6 +256,7 @@ int myLabel::countLiberty(int x, int y, std::vector<std::vector<bool>>& visited)
     // 如果没有气，则标记为死子
     if (liberties == 0)
     {
+        playCaptureSound();
         for (auto [cx, cy] : connected)
         {
             insertIntoTable(cx, cy, board[cx][cy], c_id, 0, username, db);
@@ -529,6 +530,13 @@ void myLabel::setReplayData(const QVector<QVector<int>> &data)
 void myLabel::playSound()
 {
     player->setSource(QUrl::fromLocalFile("C:/Users/steph/Desktop/围棋落子.wav"));
+    player->setVolume(50);
+    player->play();
+}
+
+void myLabel::playCaptureSound()
+{
+    player->setSource(QUrl::fromLocalFile("C:/Users/steph/Desktop/好.wav"));
     player->setVolume(50);
     player->play();
 }
