@@ -86,3 +86,13 @@ void toRegister::on_return_2_clicked()
     emit this->back();
 }
 
+void toRegister::paintEvent(QPaintEvent *)
+{
+    QPainter painter_re(this);
+    QPixmap pix_re;
+    int nImageWidth_re=width();
+
+    pix_re.load("C:/Users/steph/Desktop/mainwindow.jpg");
+
+    painter_re.drawPixmap(0,0,nImageWidth_re,height(),pix_re);
+}

@@ -59,6 +59,13 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+     border: 2px solid gray;
+     border-radius: 10px;
+     padding: 0 8px;
+}</string>
+           </property>
            <property name="text">
             <string>START</string>
            </property>
@@ -77,6 +84,13 @@
              <pointsize>14</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+     border: 2px solid gray;
+     border-radius: 10px;
+     padding: 0 8px;
+}</string>
            </property>
            <property name="text">
             <string>FORWARD</string>
@@ -97,6 +111,13 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+     border: 2px solid gray;
+     border-radius: 10px;
+     padding: 0 8px;
+}</string>
+           </property>
            <property name="text">
             <string>BACKWARD</string>
            </property>
@@ -115,6 +136,14 @@
              <pointsize>14</pointsize>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+     border: 2px solid gray;
+     border-radius: 10px;
+     padding: 0 8px;
+     background: red;
+}</string>
            </property>
            <property name="text">
             <string>FINISH</string>

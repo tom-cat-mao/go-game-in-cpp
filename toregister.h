@@ -3,8 +3,9 @@
 
 #include "qsqldatabase.h"
 #include <QWidget>
-#include<QMessageBox>
-#include<QtSql>
+#include <QMessageBox>
+#include <QtSql>
+#include <QPainter>
 
 namespace Ui {
 class toRegister;
@@ -30,6 +31,7 @@ private:
     Ui::toRegister *ui;
 
     QSqlDatabase db;
+    void paintEvent(QPaintEvent *);
 
 };
 

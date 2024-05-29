@@ -5,6 +5,11 @@
 #include <QtSql>
 #include <QMessageBox>
 #include <QKeyEvent>
+#include <QPainter>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QSoundEffect>
+
 
 #include"dashboard.h"
 #include"toregister.h"
@@ -39,6 +44,9 @@ private slots:
     void on_register_2_clicked();
     void comeBackToPrev();
 
+    void playMusic();
+    void pauseMusic();
+
 signals:
     void sendUserID(int id, QString name);  // Signal to send the user ID
 
@@ -46,5 +54,9 @@ private:
     Ui::MainWindow *ui;
 
     QSqlDatabase db;
+
+    void paintEvent(QPaintEvent *);
+    QSoundEffect *music;
+    bool isPlaying;
 };
 #endif // MAINWINDOW_H
